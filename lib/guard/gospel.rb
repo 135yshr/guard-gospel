@@ -1,10 +1,11 @@
-require "guard"
+require 'guard'
 require 'guard/plugin'
-require "guard/gospel/version"
 
 module Guard
-  module Gospel < Plugin
-  	
+  class GoSpel < Plugin
+
+  	attr_accessor :options
+
     # Initializes a Guard plugin.
     # Don't do any work here, especially as Guard plugins get initialized even if they are not in an active group!
     #
@@ -15,6 +16,7 @@ module Guard
     #
     def initialize(options = {})
       super
+      @options = options
     end
 
     # Called once when Guard starts. Please override initialize method to init stuff.
@@ -84,5 +86,6 @@ module Guard
     # @return [Object] the task result
     #
     def run_on_removals(paths)
-    end  end
+    end
+  end
 end

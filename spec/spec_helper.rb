@@ -1,5 +1,5 @@
 require 'rspec'
-require 'guard/rspec'
+require 'guard/gospel'
 
 if ENV['CI']
   require 'coveralls'
