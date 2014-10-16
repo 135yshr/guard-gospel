@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe Guard::Gospel do
   describe '.initialize' do
-  	let(:default_options) {Guard::GoSpel::DEFAULTS}
+  	let(:default_options) { Guard::GoSpel::Options::DEFAULTS }
+  	let(:options) { {} }
+    let(:plugin) { Guard::GoSpel.new(options) }
+
     it 'instanciates with default and custom options' do
       guard_gospel = Guard::GoSpel.new(foo: :bar)
       expect(guard_gospel.options).to eq(default_options.merge(foo: :bar))
@@ -16,4 +19,5 @@ describe Guard::Gospel do
       Guard::GoSpel.new(foo: :bar)
     end
   end
+
 end

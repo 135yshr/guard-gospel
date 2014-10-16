@@ -3,11 +3,10 @@ require 'guard/plugin'
 
 module Guard
   class GoSpel < Plugin
+  	require 'guard/gospel/options'
   	require 'guard/gospel/runner'
   	require 'guard/gospel/deprecator'
 
-  	DEFAULTS = {
-  	}
   	attr_accessor :options, :runner
 
     # Initializes a Guard plugin.
@@ -20,9 +19,9 @@ module Guard
     #
     def initialize(options = {})
       super
-      @options = options
+      @options = Options.with_defaults(options)
       Deprecator.warns_about_deprecated_options(@options)
-      @runner = Runner.new(options)
+      @runner = Runner.new(@options)
     end
 
     # Called once when Guard starts. Please override initialize method to init stuff.
@@ -31,6 +30,7 @@ module Guard
     # @return [Object] the task result
     #
     def start
+      run_all if options[:all_on_start]
     end
 
     # Called when `stop|quit|exit|s|q|e + enter` is pressed (when Guard quits).
