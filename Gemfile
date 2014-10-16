@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-    gem 'coveralls', require: false
+  gem 'guard-rspec', require: false
+  gem 'coveralls', require: false
 end
 
 group :tool do
