@@ -11,3 +11,7 @@ end
 group :tool do
   gem 'ruby_gntp', require: false
 end
+
+group :linux do
+  gem 'libnotify'
+end
