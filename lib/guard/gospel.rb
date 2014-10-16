@@ -4,6 +4,7 @@ require 'guard/plugin'
 module Guard
   class GoSpel < Plugin
   	require 'guard/gospel/runner'
+  	require 'guard/gospel/deprecator'
 
   	DEFAULTS = {
   	}
@@ -20,6 +21,7 @@ module Guard
     def initialize(options = {})
       super
       @options = options
+      Deprecator.warns_about_deprecated_options(@options)
       @runner = Runner.new(options)
     end
 

@@ -11,5 +11,9 @@ describe Guard::Gospel do
       expect(Guard::GoSpel::Runner).to receive(:new).with(default_options.merge(foo: :bar))
       Guard::GoSpel.new(foo: :bar)
     end
+    it 'warns deprecated options' do
+      expect(Guard::GoSpel::Deprecator).to receive(:warns_about_deprecated_options).with(default_options.merge(foo: :bar))
+      Guard::GoSpel.new(foo: :bar)
+    end
   end
 end
