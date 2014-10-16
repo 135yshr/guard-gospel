@@ -3,8 +3,11 @@ require 'guard/plugin'
 
 module Guard
   class GoSpel < Plugin
+  	require 'guard/gospel/runner'
 
-  	attr_accessor :options
+  	DEFAULTS = {
+  	}
+  	attr_accessor :options, :runner
 
     # Initializes a Guard plugin.
     # Don't do any work here, especially as Guard plugins get initialized even if they are not in an active group!
@@ -17,6 +20,7 @@ module Guard
     def initialize(options = {})
       super
       @options = options
+      @runner = Runner.new(options)
     end
 
     # Called once when Guard starts. Please override initialize method to init stuff.
