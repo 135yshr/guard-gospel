@@ -1,3 +1,4 @@
+require 'sys/proctable'
 require 'childprocess'
 
 module Guard
@@ -16,7 +17,7 @@ module Guard
       end
 
       def ps_go_pid()
-        1
+        Sys::ProcTable.ps.select { |pe| pe.ppid == @pid }.map { |pe| pe.pid }
       end
   	end
   end
