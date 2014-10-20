@@ -2,7 +2,7 @@ module Guard
   class GoSpel
     module Options
       DEFAULTS = {
-  	    all_on_start: false
+        cmd: 'go'
   	  }
   	  class << self
         def with_defaults(options = {})
