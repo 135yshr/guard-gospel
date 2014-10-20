@@ -21,5 +21,9 @@ describe Guard::GoSpel::Runner do
     it 'count process table' do
       expect(sut.ps_go_pid).to eq(1)
     end
+    it 'count process table2' do
+      expect(Sys::ProcTable.ps).to receive(:select).once
+      sut.ps_go_pid
+    end
   end
 end
