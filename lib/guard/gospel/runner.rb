@@ -14,6 +14,10 @@ module Guard
         @proc.start
         @pid = @proc.pid
       end
+
+      def ps_go_pid()
+        1
+      end
   	end
   end
 end
