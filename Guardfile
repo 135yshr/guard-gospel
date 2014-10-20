@@ -15,4 +15,4 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch('spec/spec_helper.rb')  { "spec" }
 end
 
-notification :libnotify, timeout: 5
+#notification :libnotify, timeout: 5

@@ -15,3 +15,7 @@ end
 group :linux do
   gem 'libnotify'
 end
+
+group :mac do
+  gem 'growl'
+end
