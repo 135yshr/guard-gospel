@@ -12,7 +12,7 @@ module Guard
       def run()
         @proc = ChildProcess.build(@options[:cmd], 'test')
         @proc.start
-        @pid = 1
+        @pid = @proc.pid
       end
   	end
   end
