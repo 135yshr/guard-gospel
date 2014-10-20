@@ -3,8 +3,9 @@ module Guard
     module Options
       DEFAULTS = {
         cmd: 'go'
-  	  }
-  	  class << self
+      }
+
+      class << self
         def with_defaults(options = {})
           _deep_merge(DEFAULTS, options)
         end
@@ -18,7 +19,7 @@ module Guard
             end
           end
         end
-  	  end
+      end
     end
   end
 end
