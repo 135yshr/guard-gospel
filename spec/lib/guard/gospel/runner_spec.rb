@@ -19,11 +19,11 @@ describe Guard::GoSpel::Runner do
   end
 
   describe '.ps_go_pid' do
-    context 'with pid 0' do
+    context 'when get empty process list' do
       it { expect(sut.ps_go_pid).to eq([]) }
     end
 
-    context 'with pid 1' do
+    context 'when get process list' do
       it do
         sut.pid = 1
         expect(sut.ps_go_pid).to_not eq([])
