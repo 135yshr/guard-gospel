@@ -9,7 +9,8 @@ describe Guard::GoSpel::Runner do
       it {expect(sut.pid).to_not eq(0)}
     end
 
-    it 'call childprocess.build' do
+    context 'with call childprocess.build'
+    it do
       expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
       expect(proc).to receive(:start).once
       expect(proc).to receive(:pid).once
@@ -23,10 +24,10 @@ describe Guard::GoSpel::Runner do
     end
 
     context 'with pid 1' do
-      it {
+      it do
         sut.pid = 1
         expect(sut.ps_go_pid).to_not eq([])
-      }
+      end
     end
   end
 end
