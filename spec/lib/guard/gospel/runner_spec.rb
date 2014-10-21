@@ -9,12 +9,13 @@ describe Guard::GoSpel::Runner do
       it {expect(sut.pid).to_not eq(0)}
     end
 
-    context 'with call childprocess.build'
-    it do
-      expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
-      expect(proc).to receive(:start).once
-      expect(proc).to receive(:pid).once
-      sut.run
+    context 'when call childprocess.build' do
+      it do
+        expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
+        expect(proc).to receive(:start).once
+        expect(proc).to receive(:pid).once
+        sut.run
+      end
     end
   end
 
