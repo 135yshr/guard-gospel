@@ -18,12 +18,15 @@ describe Guard::GoSpel::Runner do
   end
 
   describe '.ps_go_pid' do
-    it 'count process table' do
-      expect(sut.ps_go_pid).to_not eq([])
+    context 'with pid 0' do
+      it { expect(sut.ps_go_pid).to eq([]) }
     end
-    it 'count process table2' do
-      expect(Sys::ProcTable.ps).to receive(select)
-      sut.ps_go_pid
+
+    context 'with pid 1' do
+      it {
+        sut.pid = 1
+        expect(sut.ps_go_pid).to_not eq([])
+      }
     end
   end
 end
