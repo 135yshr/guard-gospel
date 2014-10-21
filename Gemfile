@@ -12,10 +12,9 @@ group :tool do
   gem 'ruby_gntp', require: false
 end
 
-group :linux do
-  gem 'libnotify'
-end
-
-group :mac do
+case RUBY_PLATFORM
+when /darwin/
   gem 'growl'
+when /linux/
+  gem 'libnotify'
 end
