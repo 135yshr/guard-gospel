@@ -5,8 +5,8 @@ describe Guard::GoSpel::Runner do
   let(:sut){ Guard::GoSpel::Runner.new(default_options) }
   describe '.run' do
     let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
-    it 'pid is not zero' do
-      expect(sut.pid).to_not eq(0)
+    context 'when get pid not zero' do
+      it {expect(sut.pid).to_not eq(0)}
     end
 
     it 'call childprocess.build' do
