@@ -49,4 +49,11 @@ describe Guard::Gospel do
       plugin.run_all
     end
   end
+
+  describe '#reload' do
+    it 'reloads via runner' do
+      expect(runner).to receive(:reload)
+      plugin.reload
+    end
+  end
 end

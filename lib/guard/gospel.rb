@@ -49,6 +49,7 @@ module Guard
     # @return [Object] the task result
     #
     def reload
+      @runner.reload
     end
 
     # Called when just `enter` is pressed
