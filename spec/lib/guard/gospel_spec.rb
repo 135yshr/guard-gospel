@@ -36,4 +36,11 @@ describe Guard::Gospel do
       plugin.start
     end
   end
+
+  describe '#run_all' do
+    it 'runs all specs  via runner' do
+      expect(runner).to receive(:run_all) {true}
+      plugin.run_all
+    end
+  end
 end

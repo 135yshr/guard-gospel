@@ -58,6 +58,7 @@ module Guard
     # @return [Object] the task result
     #
     def run_all
+        @runner.run_all
     end
 
     # Default behaviour on file(s) changes that the Guard plugin watches.
