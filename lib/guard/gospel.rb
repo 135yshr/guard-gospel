@@ -62,23 +62,6 @@ module Guard
         _throw_if_failed { @runner.run_all }
     end
 
-    # Default behaviour on file(s) changes that the Guard plugin watches.
-    # @param [Array<String>] paths the changes files or paths
-    # @raise [:task_has_failed] when run_on_change has failed
-    # @return [Object] the task result
-    #
-    def run_on_changes(paths)
-    end
-
-    # Called on file(s) additions that the Guard plugin watches.
-    #
-    # @param [Array<String>] paths the changes files or paths
-    # @raise [:task_has_failed] when run_on_additions has failed
-    # @return [Object] the task result
-    #
-    def run_on_additions(paths)
-    end
-
     # Called on file(s) modifications that the Guard plugin watches.
     #
     # @param [Array<String>] paths the changes files or paths
@@ -88,15 +71,6 @@ module Guard
     def run_on_modifications(paths)
       return false if paths.empty?
       _throw_if_failed { @runner.run(paths) }
-    end
-
-    # Called on file(s) removals that the Guard plugin watches.
-    #
-    # @param [Array<String>] paths the changes files or paths
-    # @raise [:task_has_failed] when run_on_removals has failed
-    # @return [Object] the task result
-    #
-    def run_on_removals(paths)
     end
 
     def _throw_if_failed
