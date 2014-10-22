@@ -4,9 +4,10 @@ describe Guard::Gospel do
   let(:default_options) { Guard::Gospel::Options::DEFAULTS }
   let(:options) { {} }
   let(:plugin) { Guard::Gospel.new(options) }
-  let(:runner) { double(Guard::Gospel::Runner) }
+  let(:runner) { Guard::Gospel::Runner }
 
   before {
+    allow(Guard::UI).to receive(:info)
     allow(Guard::Gospel::Runner).to receive(:new) {runner}
   }
 
@@ -30,6 +31,7 @@ describe Guard::Gospel do
 
   describe '#start' do
     it 'calls runner#run' do
+      expect(Guard::UI).to receive(:info)
       expect(runner).to receive(:run).once
       plugin.start
     end

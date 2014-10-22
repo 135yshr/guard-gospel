@@ -30,6 +30,7 @@ module Guard
     # @return [Object] the task result
     #
     def start
+      ::Guard::UI.info 'Guard::Gospel is running'
       @runner.run
     end
 
