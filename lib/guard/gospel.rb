@@ -87,7 +87,7 @@ module Guard
     #
     def run_on_modifications(paths)
       return false if paths.empty?
-      @runner.run(paths)
+      _throw_if_failed { @runner.run(paths) }
     end
 
     # Called on file(s) removals that the Guard plugin watches.
