@@ -30,7 +30,7 @@ module Guard
     # @return [Object] the task result
     #
     def start
-      run_all if options[:all_on_start]
+      @runner.run
     end
 
     # Called when `stop|quit|exit|s|q|e + enter` is pressed (when Guard quits).
