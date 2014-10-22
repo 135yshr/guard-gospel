@@ -86,6 +86,7 @@ module Guard
     # @return [Object] the task result
     #
     def run_on_modifications(paths)
+      return false if paths.empty?
       @runner.run(paths)
     end
 
