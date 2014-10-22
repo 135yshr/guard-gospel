@@ -4,7 +4,7 @@ describe Guard::Gospel do
   let(:default_options) { Guard::Gospel::Options::DEFAULTS }
   let(:options) { {} }
   let(:plugin) { Guard::Gospel.new(options) }
-  let(:runner) { double(Guard::RSpec::Runner) }
+  let(:runner) { double(Guard::Gospel::Runner) }
 
   before {
     allow(Guard::Gospel::Runner).to receive(:new) {runner}
