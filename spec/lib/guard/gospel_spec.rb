@@ -42,5 +42,11 @@ describe Guard::Gospel do
       expect(runner).to receive(:run_all) {true}
       plugin.run_all
     end
+
+    it 'throws task_has_failed if runner return false' do
+      expect(runner).to receive(:run_all) {false}
+      expect(plugin).to receive(:throw).with(:task_has_failed)
+      plugin.run_all
+    end
   end
 end

@@ -58,7 +58,7 @@ module Guard
     # @return [Object] the task result
     #
     def run_all
-        @runner.run_all
+        _throw_if_failed { @runner.run_all }
     end
 
     # Default behaviour on file(s) changes that the Guard plugin watches.
@@ -94,6 +94,10 @@ module Guard
     # @return [Object] the task result
     #
     def run_on_removals(paths)
+    end
+
+    def _throw_if_failed
+      throw :task_has_failed unless yield
     end
   end
 end
