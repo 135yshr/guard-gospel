@@ -10,13 +10,13 @@ module Guard
       	@options = options
       end
 
-      def run()
+      def run
         @proc = ChildProcess.build @options[:cmd], 'test'
         @proc.start
         @pid = @proc.pid
       end
 
-      def ps_go_pid()
+      def ps_go_pid
         Sys::ProcTable.ps.select { |pe| pe.ppid == @pid }.map { |pe| pe.pid }
       end
   	end
