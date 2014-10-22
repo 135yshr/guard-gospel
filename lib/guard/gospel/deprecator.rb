@@ -1,5 +1,5 @@
 module Guard
-  class GoSpel
+  class Gospel
     class Deprecator
       attr_accessor :options
 

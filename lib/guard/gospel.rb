@@ -2,7 +2,7 @@ require 'guard'
 require 'guard/plugin'
 
 module Guard
-  class GoSpel < Plugin
+  class Gospel < Plugin
   	require 'guard/gospel/options'
   	require 'guard/gospel/runner'
   	require 'guard/gospel/deprecator'

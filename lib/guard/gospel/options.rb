@@ -1,5 +1,5 @@
 module Guard
-  class GoSpel
+  class Gospel
     module Options
       DEFAULTS = {
         cmd: 'go'

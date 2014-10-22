@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Guard::GoSpel::Runner do
-  let(:default_options) { Guard::GoSpel::Options::DEFAULTS }
-  let(:guard_runner){ Guard::GoSpel::Runner.new(default_options) }
+describe Guard::Gospel::Runner do
+  let(:default_options) { Guard::Gospel::Options::DEFAULTS }
+  let(:guard_runner){ Guard::Gospel::Runner.new(default_options) }
   describe '#run' do
     context 'when get pid not zero' do
       it do
-        sut = Guard::GoSpel::Runner.new(default_options)
+        sut = Guard::Gospel::Runner.new(default_options)
         expect(sut.pid).to eq(nil)
       end
     end

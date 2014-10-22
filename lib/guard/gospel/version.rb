@@ -1,5 +1,5 @@
 module Guard
-  module Gospel
+  module GospelVersion
     VERSION = "0.0.1"
   end
 end

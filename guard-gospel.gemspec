@@ -5,7 +5,7 @@ require 'guard/gospel/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "guard-gospel"
-  spec.version       = Guard::Gospel::VERSION
+  spec.version       = Guard::GospelVersion::VERSION
   spec.authors       = ["135yshr"]
   spec.email         = ["isago@praisefirst.co.jp"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

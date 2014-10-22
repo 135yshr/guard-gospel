@@ -2,7 +2,7 @@ require 'sys/proctable'
 require 'childprocess'
 
 module Guard
-  class GoSpel
+  class Gospel
   	class Runner
       attr_accessor :options, :pid
 
