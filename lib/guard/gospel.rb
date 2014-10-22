@@ -86,6 +86,7 @@ module Guard
     # @return [Object] the task result
     #
     def run_on_modifications(paths)
+      @runner.run(paths)
     end
 
     # Called on file(s) removals that the Guard plugin watches.

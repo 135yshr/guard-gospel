@@ -56,4 +56,12 @@ describe Guard::Gospel do
       plugin.reload
     end
   end
+
+  describe '#run_on_modifications' do
+    let(:paths) { %w[path1 path2] }
+    it "runs all specs via runner" do
+      expect(runner).to receive(:run).with(paths) { true }
+      plugin.run_on_modifications(paths)
+    end
+  end
 end
