@@ -29,8 +29,7 @@ describe Guard::Gospel::Runner do
 
     context 'when get process list' do
       it do
-        ptbl = Sys::ProcTable::ProcTableStruct.new(ppid: 1)
-        allow(Sys::ProcTable::ps).to receive(:select).and_return([ptbl])
+        allow(Sys::ProcTable::ps).to receive(:select) {[Sys::ProcTable::ProcTableStruct.new(ppid: 1)]}
         guard_runner.pid = 1
         expect(guard_runner.ps_go_pid).to_not eq([])
       end
