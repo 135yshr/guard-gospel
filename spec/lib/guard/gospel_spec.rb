@@ -4,7 +4,7 @@ describe Guard::Gospel do
   let(:default_options) { Guard::Gospel::Options::DEFAULTS }
   let(:options) { {} }
   let(:plugin) { Guard::Gospel.new(options) }
-  let(:runner) { Guard::Gospel::Runner }
+  let(:runner) { double(Guard::Gospel::Runner) }
 
   before {
     allow(Guard::UI).to receive(:info)
@@ -62,6 +62,11 @@ describe Guard::Gospel do
     it "runs all specs via runner" do
       expect(runner).to receive(:run).with(paths) { true }
       plugin.run_on_modifications(paths)
+    end
+
+    it "does nothing if paths empty" do
+      allow(runner).to receive(:run)
+      plugin.run_on_modifications([])
     end
   end
 end
