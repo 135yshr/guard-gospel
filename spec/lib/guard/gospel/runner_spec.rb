@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Guard::GoSpel::Runner do
   let(:default_options) { Guard::GoSpel::Options::DEFAULTS }
   let(:guard_runner){ Guard::GoSpel::Runner.new(default_options) }
-  describe '.run' do
+  describe '#run' do
     context 'when get pid not zero' do
       it do
         sut = Guard::GoSpel::Runner.new(default_options)
@@ -22,7 +22,7 @@ describe Guard::GoSpel::Runner do
     end
   end
 
-  describe '.ps_go_pid' do
+  describe '#ps_go_pid' do
     context 'when get empty process list' do
       it { expect(guard_runner.ps_go_pid).to eq([]) }
     end
