@@ -11,11 +11,11 @@ module Guard
       end
 
       def run
-        @proc = ChildProcess.build @options[:cmd], 'test'
-        @proc.start
-        @proc.wait
-        @pid = @proc.pid
-        if @proc.exit_code == 0 then
+        proc = ChildProcess.build @options[:cmd], 'test'
+        proc.start
+        proc.wait
+        pid = proc.pid
+        if proc.exit_code == 0 then
           ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
         end
       end
