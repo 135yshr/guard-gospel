@@ -18,17 +18,4 @@ describe Guard::Gospel::Runner do
     end
   end
 
-  describe '#ps_go_pid' do
-    context 'when get empty process list' do
-      it { expect(guard_runner.ps_go_pid).to eq([]) }
-    end
-
-    context 'when get process list' do
-      it do
-        allow(Sys::ProcTable::ps).to receive(:select) {[Sys::ProcTable::ProcTableStruct.new(ppid: 1)]}
-        guard_runner.pid = 1
-        expect(guard_runner.ps_go_pid).to_not eq([])
-      end
-    end
-  end
 end
