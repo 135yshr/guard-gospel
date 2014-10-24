@@ -13,11 +13,9 @@ module Guard
         proc = ChildProcess.build @options[:cmd], 'test'
         proc.start
         proc.wait
-        if proc.exit_code == 0 then
-          ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
-        else
-          ::Guard::Notifier.notify('Fail', title: @options[:title], image: :failed, priority: 2)
-        end
+
+        return ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2) if proc.exit_code == 0
+        ::Guard::Notifier.notify('Failed', title: @options[:title], image: :failed, priority: 2)
       end
     end
   end
