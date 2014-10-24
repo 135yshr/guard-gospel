@@ -15,6 +15,8 @@ module Guard
         proc.wait
         if proc.exit_code == 0 then
           ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
+        else
+          ::Guard::Notifier.notify('Fail', title: @options[:title], image: :failed, priority: 2)
         end
       end
     end
