@@ -10,6 +10,7 @@ describe Guard::Gospel::Runner do
       expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
       expect(proc).to receive(:start).once
       expect(proc).to receive(:wait).once
+      expect(proc).to receive(:exit_code).once
       guard_runner.run
     end
   end

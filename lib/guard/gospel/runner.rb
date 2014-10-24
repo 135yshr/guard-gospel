@@ -15,6 +15,7 @@ module Guard
         @proc.start
         @proc.wait
         @pid = @proc.pid
+        @proc.exit_code
       end
 
       def ps_go_pid
