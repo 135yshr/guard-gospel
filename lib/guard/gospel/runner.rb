@@ -15,7 +15,9 @@ module Guard
         @proc.start
         @proc.wait
         @pid = @proc.pid
-        @proc.exit_code
+        if @proc.exit_code == 0 then
+          ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
+        end
       end
 
       def ps_go_pid

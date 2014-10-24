@@ -5,13 +5,16 @@ describe Guard::Gospel::Runner do
   let(:guard_runner){ Guard::Gospel::Runner.new(default_options) }
 
   describe '#run' do
-    let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
-    it 'call childprocess.build' do
-      expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
-      expect(proc).to receive(:start).once
-      expect(proc).to receive(:wait).once
-      expect(proc).to receive(:exit_code).once
-      guard_runner.run
+    context 'when success command' do
+      let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
+      it 'return 0' do
+        allow(proc).to receive(:exit_code) {0}
+        expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
+        expect(proc).to receive(:start).once
+        expect(proc).to receive(:wait).once
+        expect(::Guard::Notifier).to receive(:notify).with("Success", title: default_options[:title], image: :success, priority: -2)
+        guard_runner.run
+      end
     end
   end
 
