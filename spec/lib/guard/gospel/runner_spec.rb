@@ -3,22 +3,14 @@ require 'spec_helper'
 describe Guard::Gospel::Runner do
   let(:default_options) { Guard::Gospel::Options::DEFAULTS }
   let(:guard_runner){ Guard::Gospel::Runner.new(default_options) }
-  describe '#run' do
-    context 'when get pid not zero' do
-      it do
-        sut = Guard::Gospel::Runner.new(default_options)
-        expect(sut.pid).to eq(nil)
-      end
-    end
 
-    context 'when call childprocess.build' do
-      let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
-      it do
-        expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
-        expect(proc).to receive(:start).once
-        expect(proc).to receive(:pid).once
-        guard_runner.run
-      end
+  describe '#run' do
+    let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
+    it 'call childprocess.build' do
+      expect(ChildProcess).to receive(:build).with(default_options[:cmd], 'test').and_return(proc)
+      expect(proc).to receive(:start).once
+      expect(proc).to receive(:pid).once
+      guard_runner.run
     end
   end
 
