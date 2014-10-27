@@ -21,16 +21,23 @@ module Guard
         proc.start
         proc.wait
 
+        line = out.readlines[0]
+
         return success_notifer if proc.exit_code == 0
-        failed_notifer
+        failed_notifer line
       end
 
       def success_notifer
         ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
       end
 
-      def failed_notifer
-        ::Guard::Notifier.notify('Failed', title: @options[:title], image: :failed, priority: 2)
+      def failed_notifer(line)
+        test_count, fail_count = 0, 0
+        line.to_s.chars {|ch|
+          ++test_count
+          ++fail_count if ch == 'F'
+        }
+        ::Guard::Notifier.notify("Failed #{test_count} tests, #{fail_count} failure", title: @options[:title], image: :failed, priority: 2)
       end
     end
   end
