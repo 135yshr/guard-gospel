@@ -1,4 +1,5 @@
 require 'childprocess'
+require 'tempfile'
 
 module Guard
   class Gospel
@@ -11,6 +12,12 @@ module Guard
 
       def run
         proc = ChildProcess.build @options[:cmd], 'test'
+
+        out = Tempfile.open(['go_spel', '.tmp'])
+        out.sync = true
+
+        proc.io.stdout = proc.io.stderr = out
+        proc.cwd = Dir.pwd
         proc.start
         proc.wait
 
