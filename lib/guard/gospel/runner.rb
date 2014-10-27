@@ -21,7 +21,15 @@ module Guard
         proc.start
         proc.wait
 
-        return ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2) if proc.exit_code == 0
+        return success_notifer if proc.exit_code == 0
+        failed_notifer
+      end
+
+      def success_notifer
+        ::Guard::Notifier.notify('Success', title: @options[:title], image: :success, priority: -2)
+      end
+
+      def failed_notifer
         ::Guard::Notifier.notify('Failed', title: @options[:title], image: :failed, priority: 2)
       end
     end
