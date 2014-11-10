@@ -33,10 +33,13 @@ module Guard
 
       def failed_notifer(line)
         test_count, fail_count = 0, 0
-        line.to_s.chars {|ch|
-          ++test_count
-          ++fail_count if ch == 'F'
+        line.split("").each {|ch|
+          p ch
+          test_count += 1
+          fail_count += 1 if ch == 'F'
         }
+        p test_count
+        p fail_count
         ::Guard::Notifier.notify("Failed #{test_count} tests, #{fail_count} failure", title: @options[:title], image: :failed, priority: 2)
       end
     end
