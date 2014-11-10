@@ -2,7 +2,9 @@ module Guard
   class Gospel
     module Options
       DEFAULTS = {
-        cmd: 'go'
+        cmd: 'go',
+        basename: 'go_spel',
+        tempdir: '.tmp'
       }
 
       class << self
