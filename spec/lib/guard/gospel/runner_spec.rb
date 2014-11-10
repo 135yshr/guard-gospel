@@ -25,6 +25,14 @@ describe Guard::Gospel::Runner do
         expect(::Guard::Notifier).to receive(:notify).with("Failed 2 tests, 1 failure", title: default_options[:title], image: :failed, priority: 2)
         guard_runner.run
       end
+
+      it "return 1 failed to 3" do
+        allow(proc).to receive(:exit_code) {1}
+        allow(out).to receive(:readlines) {[".FFF.", "dummy"]}
+        expect(Tempfile).to receive(:open).with(['go_spel', '.tmp']) { out }
+        expect(::Guard::Notifier).to receive(:notify).with("Failed 5 tests, 3 failure", title: default_options[:title], image: :failed, priority: 2)
+        guard_runner.run
+      end
     end
   end
 
