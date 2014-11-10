@@ -13,7 +13,7 @@ module Guard
       def run
         proc = ChildProcess.build @options[:cmd], 'test'
 
-        out = Tempfile.open(['go_spel', '.tmp'])
+        out = Tempfile.open([@options[:basename], @options[:tempdir]])
         out.sync = true
 
         proc.io.stdout = proc.io.stderr = out

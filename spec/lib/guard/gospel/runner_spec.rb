@@ -6,7 +6,7 @@ describe Guard::Gospel::Runner do
 
   describe '#run' do
     let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
-    let(:out) { Tempfile.open(['go_spel', '.tmp'])}
+    let(:out) { Tempfile.open([default_options[:basename], default_options[:tempdir]])}
 
     context 'when success command' do
       it 'return 0' do
