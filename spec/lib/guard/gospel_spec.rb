@@ -39,12 +39,12 @@ describe Guard::Gospel do
 
   describe '#run_all' do
     it 'runs all specs  via runner' do
-      expect(runner).to receive(:run_all) {true}
+      expect(runner).to receive(:run) {true}
       plugin.run_all
     end
 
     it 'throws task_has_failed if runner return false' do
-      expect(runner).to receive(:run_all) {false}
+      expect(runner).to receive(:run) {false}
       expect(plugin).to receive(:throw).with(:task_has_failed)
       plugin.run_all
     end
@@ -60,7 +60,7 @@ describe Guard::Gospel do
   describe '#run_on_modifications' do
     let(:paths) { %w[path1 path2] }
     it "runs all specs via runner" do
-      expect(runner).to receive(:run).with(paths) { true }
+      expect(runner).to receive(:run) { true }
       expect(plugin.run_on_modifications(paths)).to eq(nil)
     end
 
@@ -70,7 +70,7 @@ describe Guard::Gospel do
     end
 
     it "throws task_has_failed if runner return false" do
-      allow(runner).to receive(:run).with(paths) { false }
+      allow(runner).to receive(:run) { false }
       expect(plugin).to receive(:throw).with(:task_has_failed)
       plugin.run_on_modifications(paths)
     end
