@@ -13,16 +13,22 @@ module Guard
       def run
         proc = ChildProcess.build @options[:cmd], 'test'
 
-        out = Tempfile.open([@options[:basename], @options[:tempdir]])
-        out.sync = true
+        out = Tempfile.new([@options[:basename], @options[:tempdir]])
+        #out.sync = true
 
         proc.io.stdout = proc.io.stderr = out
+        # proc.io.stdout = proc.io.stderr = Tempfile.new([@options[:basename], @options[:tempdir]])
+        # proc.io.inherit!
         proc.cwd = Dir.pwd
         proc.start
         proc.wait
 
+        out.open
+        # p out.gets
+        # p out.readlines
         line = out.readlines[0]
 
+        out.close!
         return success_notifer if proc.exit_code == 0
         failed_notifer line
       end
@@ -34,6 +40,9 @@ module Guard
       def failed_notifer(line)
         test_count, fail_count = 0, 0
         line.split("").each {|ch|
+          if ch != 'F' && ch != '.'
+            next
+          end
           test_count += 1
           fail_count += 1 if ch == 'F'
         }

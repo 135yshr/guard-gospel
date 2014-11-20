@@ -59,7 +59,7 @@ module Guard
         # @return [Object] the task result
         #
         def run_all
-            _throw_if_failed { @runner.run_all }
+            _throw_if_failed { @runner.run }
         end
 
         # Called on file(s) modifications that the Guard plugin watches.
@@ -70,7 +70,7 @@ module Guard
         #
         def run_on_modifications(paths)
             return false if paths.empty?
-            _throw_if_failed { @runner.run(paths) }
+            _throw_if_failed { @runner.run }
         end
 
         def _throw_if_failed

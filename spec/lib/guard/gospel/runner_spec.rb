@@ -6,7 +6,7 @@ describe Guard::Gospel::Runner do
 
   describe '#run' do
     let(:proc){ ChildProcess.build(default_options[:cmd], 'test') }
-    let(:out) { Tempfile.open([default_options[:basename], default_options[:tempdir]])}
+    let(:out) { Tempfile.new([default_options[:basename], default_options[:tempdir]])}
 
     context 'when success command' do
       it 'return 0' do
@@ -20,16 +20,16 @@ describe Guard::Gospel::Runner do
     context 'when fail command' do
       it "return 1" do
         allow(proc).to receive(:exit_code) {1}
-        allow(out).to receive(:readlines) {["F.", "dummy"]}
-        expect(Tempfile).to receive(:open).with(['go_spel', '.tmp']) { out }
+        allow(out).to receive(:readlines) {["\\e[31m\\e[1m.\\e[0m\\e[31m\\e[1mF\\e[0m\n", "dummy"]}
+        expect(Tempfile).to receive(:new).with(['go_spel', '.tmp']) { out }
         expect(::Guard::Notifier).to receive(:notify).with("Failed 2 tests, 1 failure", title: default_options[:title], image: :failed, priority: 2)
         guard_runner.run
       end
 
       it "return 1 failed to 3" do
         allow(proc).to receive(:exit_code) {1}
-        allow(out).to receive(:readlines) {[".FFF.", "dummy"]}
-        expect(Tempfile).to receive(:open).with(['go_spel', '.tmp']) { out }
+        allow(out).to receive(:readlines) {["\\e[31m\\e[1m.\\e[0m\\e[31m\\e[1mF\\e[0m\\e[31m\\e[1mF\\e[0m\\e[31m\\e[1mF\\e[0m\\e[31m\\e[1m.\\e[0m", "dummy"]}
+        expect(Tempfile).to receive(:new).with(['go_spel', '.tmp']) { out }
         expect(::Guard::Notifier).to receive(:notify).with("Failed 5 tests, 3 failure", title: default_options[:title], image: :failed, priority: 2)
         guard_runner.run
       end
