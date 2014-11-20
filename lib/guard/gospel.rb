@@ -6,6 +6,7 @@ module Guard
         require 'guard/gospel/options'
         require 'guard/gospel/runner'
         require 'guard/gospel/deprecator'
+        require 'guard/gospel/writer'
 
         attr_accessor :options, :runner
 
