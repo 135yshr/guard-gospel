@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Guard::Gospel::Writer do
   let(:default_options) { Guard::Gospel::Options::DEFAULTS }
-  let(:guard_writer){ Guard::Gospel::Writer.new(default_options) }
+  let(:guard_writer){ Guard::Gospel::Writer.new }
   let(:strio) { StringIO.new }
 
   describe '#write' do
@@ -23,14 +23,6 @@ describe Guard::Gospel::Writer do
     context 'when success command' do
       it do
         expect(guard_writer.to_io).not_to eq nil
-      end
-    end
-  end
-
-  describe '#string' do
-    context 'when success command' do
-      it do
-        expect(guard_writer.string).to eq ''
       end
     end
   end

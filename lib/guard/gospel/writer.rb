@@ -1,26 +1,23 @@
-require 'tempfile'
 require 'stringio'
 
 module Guard
   class Gospel
-    class Writer
-      attr_accessor :options
-      def initialize(options = {})
-        @options = options
-        @strio = StringIO.new
+    class Writer < IO
+      def initialize
+        @sio = StringIO.new
       end
 
       def write(text)
         STDOUT.write text
-        @strio.write text
+        @sio.write text
       end
 
       def to_io
-        STDOUT
+        self
       end
 
-      def string
-        @strio.string
+      def readlines
+        @sio.readlines
       end
     end
   end
