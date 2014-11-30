@@ -1,5 +1,6 @@
 require 'childprocess'
 require 'tempfile'
+require 'stringio'
 
 module Guard
   class Gospel
@@ -13,22 +14,13 @@ module Guard
       def run
         proc = ChildProcess.build @options[:cmd], 'test'
 
-        out = Tempfile.new([@options[:basename], @options[:tempdir]])
-        #out.sync = true
-
-        proc.io.stdout = proc.io.stderr = out
-        # proc.io.stdout = proc.io.stderr = Tempfile.new([@options[:basename], @options[:tempdir]])
-        # proc.io.inherit!
+        out = Writer.new([@options[:basename], @options[:tempdir]])
         proc.cwd = Dir.pwd
         proc.start
         proc.wait
 
-        out.open
-        # p out.gets
-        # p out.readlines
-        line = out.readlines[0]
+        line = out.string.split('\n')[0]
 
-        out.close!
         return success_notifer if proc.exit_code == 0
         failed_notifer line
       end
