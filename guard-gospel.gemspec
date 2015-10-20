@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "guard-gospel"
   spec.version       = Guard::GospelVersion::VERSION
   spec.authors       = ["135yshr"]
-  spec.email         = ["isago@praisefirst.co.jp"]
+  spec.email         = ["isago@on-s.co.jp"]
   spec.summary       = %q{Guard gem for Gospel}
   spec.description   = %q{Guard gem for launching go files}
   spec.homepage      = ""
